@@ -9,7 +9,7 @@ import { test, expect } from '@playwright/test';
     })
 
   test('login to Orange HRM', async ({ page }) => {
-    await expect(page).toHaveURL('/https://opensource-demo\.orangehrmlive\.com\/web\/index\.php\/dashboard\/index/); 
+    await expect(page).toHaveURL('/https://opensource-demo\.orangehrmlive\.com\/web\/index\.php\/dashboard\/index/'); 
 })
 
   test('validate the title of the page', async ({ page }) => {
@@ -55,4 +55,23 @@ import { test, expect } from '@playwright/test';
     await expect(page.getByRole('Buzz', { name: 'Buzz' })).toBeVisible();
     })  
 
+
+    test('get username, print it, and logout', async ({ page }) => {
+  await page.goto('https://opensource-demo.orangehrmlive.com/');
+
+  // Get logged-in username (top-right dropdown)
+  const userName = await page.locator('.oxd-userdropdown-name').textContent();
+
+  // Print to console
+  console.log('Logged in user:', userName);
+
+  // Open dropdown
+  await page.locator('.oxd-userdropdown-name').click();
+
+  // Click Logout
+  await page.getByRole('menuitem', { name: 'Logout' }).click();
+
+  // Validate logout (back to login page)
+  await expect(page).toHaveURL(/login/);
+});
 
