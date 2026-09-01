@@ -60,9 +60,9 @@ import { test, expect } from '@playwright/test';
 
     test('get username, print it, and logout', async ({ page }) => {
   await page.goto('https://opensource-demo.orangehrmlive.com/');
-
+  await page.waitForTimeout(7000); 
   // Get logged-in username (top-right dropdown)
-  const userName = await page.locator('.oxd-userdropdown-name').textContent();
+  const userName = await page.locator('.oxd-userdropdown-name', { exact: true }).textContent();
 
   // Print to console
   console.log('Logged in user:', userName);
