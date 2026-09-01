@@ -6,10 +6,11 @@ import { test, expect } from '@playwright/test';
         await page.getByPlaceholder('Username').fill('Admin');
         await page.getByPlaceholder('Password').fill('admin123');
         await page.getByRole('button', { name: 'Login' }).click();
+      
     })
 
   test('login to Orange HRM', async ({ page }) => {
-    await expect(page).toHaveURL('/https://opensource-demo\.orangehrmlive\.com\/web\/index\.php\/dashboard\/index/'); 
+    await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"); 
 })
 
   test('validate the title of the page', async ({ page }) => {
@@ -32,27 +33,28 @@ import { test, expect } from '@playwright/test';
   })
 
    test('validate the menu item', async ({ page }) => {
-    await expect(page.getByRole('Admin', { name: 'Admin' })).toBeVisible();
+    //await page.waitForTimeout(7000); // Wait for 2 seconds to ensure the page is fully loaded
+    await expect(page.getByText('Admin', { name: 'Admin', exact: true })).toBeVisible();
   
-    await expect(page.getByRole('PIM', { name: 'PIM' })).toBeVisible();
+    await expect(page.getByText('PIM', { name: 'PIM' })).toBeVisible();
 
-    await expect(page.getByRole('Leave', { name: 'Leave' })).toBeVisible();
+    await expect(page.getByText('Leave', { name: 'Leave', exact: true })).toBeVisible();
  
-    await expect(page.getByRole('Time', { name: 'Time' })).toBeVisible();
+    await expect(page.getByText('Time', { name: 'Time', exact: true })).toBeVisible();
  
-    await expect(page.getByRole('Recruitment', { name: 'Recruitment' })).toBeVisible();
+    await expect(page.getByText('Recruitment', { name: 'Recruitment', exact: true })).toBeVisible();
 
-    await expect(page.getByRole('My Info', { name: 'My Info' })).toBeVisible();
+    await expect(page.getByText('My Info', { name: 'My Info', exact: true })).toBeVisible();
    
-    await expect(page.getByRole('Performance', { name: 'Performance' })).toBeVisible();
+    await expect(page.getByText('Performance', { name: 'Performance', exact: true })).toBeVisible();
    
-    await expect(page.getByRole('Dashboard', { name: 'Dashboard' })).toBeVisible();
+    await expect(page.getByText('Dashboard', { name: 'Dashboard', exact: true }).first()).toBeVisible();
    
-    await expect(page.getByRole('Directory', { name: 'Directory' })).toBeVisible();
+    await expect(page.getByText('Directory', { name: 'Directory', exact: true })).toBeVisible();
    
-    await expect(page.getByRole('Maintenance', { name: 'Maintenance' })).toBeVisible();
+    await expect(page.getByText('Maintenance', { name: 'Maintenance', exact: true })).toBeVisible();
    
-    await expect(page.getByRole('Buzz', { name: 'Buzz' })).toBeVisible();
+    await expect(page.getByText('Buzz', { name: 'Buzz', exact: true })).toBeVisible();
     })  
 
 

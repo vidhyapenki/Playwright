@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, devices} from '@playwright/test';
 
 test.describe('playwright Viewport Tests', () => {
 
@@ -11,7 +11,7 @@ test.describe('playwright Viewport Tests', () => {
     });
 
     test('TC02', async ({ page }) => {
-
+   // const demoiphone= devices['iPhone 12 Pro'];
         await page.goto('https://demoqa.com/automation-practice-form');
         await page.setViewportSize({ width: 1200, height: 800 });
         await page.getByRole('textbox', { name: 'First Name' }).fill('DEMO');
@@ -38,7 +38,7 @@ test.describe('playwright Viewport Tests', () => {
 
     test('TC05', async ({ page }) => {
 
-    const iPhone11= playwright.devices['iPhone 11'];      
+    const iPhone11= devices['iPhone 11'];      
     await page.goto('https://demoqa.com/automation-practice-form');  
     await page.setViewportSize(iPhone11.viewport);
     await page.getByRole('textbox', { name: 'First Name' }).fill('DEMO');
@@ -47,7 +47,7 @@ test.describe('playwright Viewport Tests', () => {
 
     test('TC06', async ({ page }) => {
 
-    const iPhone12= playwright.devices['iPhone 12'];
+    const iPhone12= devices['iPhone 12'];
     await page.goto('https://demoqa.com/automation-practice-form');  
     await page.setViewportSize(iPhone12.viewport);
     await page.getByRole('textbox', { name: 'First Name' }).fill('DEMO');
