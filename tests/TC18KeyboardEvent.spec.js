@@ -28,13 +28,16 @@ test('Keyboard Event', async ({page}) => {
     await page.waitForTimeout(2000);
 
     //Press control + c
-    await page.keyboard.down('Control');
+    await page.keyboard.down('Control'); //Copy
     await page.keyboard.press('KeyC');
     await page.keyboard.up('Control');
     await page.waitForTimeout(2000);
 
     //Press control + v
-    await page.keyboard.press('Control+KeyV');
+    await page.keyboard.press('Control+KeyV'); // Paste
     await page.waitForTimeout(2000);
 
+    await page.locator('Demo').press('Enter');
+
 })
+

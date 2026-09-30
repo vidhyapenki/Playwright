@@ -16,7 +16,7 @@ test('Scroll Demo', async ({page}) => {
     
     //Scroll to the element view
 
-    // await page.locator('text=Infinite Scroll').scrollIntoViewIfNeeded();
+    //await page.locator('text=Infinite Scroll').scrollIntoViewIfNeeded();
     
 
 
@@ -27,3 +27,4 @@ test('Scroll Demo', async ({page}) => {
 
 
 });
+

@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  await page.getByRole('textbox', { name: 'Username' }).fill('Admin');
+  await page.getByRole('textbox', { name: 'Username' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
+  await page.getByRole('link', { name: 'Admin' }).click();
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers');
+  await page.getByRole('listitem').filter({ hasText: 'Job' }).click();
+  await page.getByRole('menuitem', { name: 'Job Titles' }).click();
+  await page.getByRole('button', { name: ' Add' }).click();
+  await page.getByRole('textbox').nth(1).click();
+  await page.getByRole('textbox').nth(1).fill('Test Job');
+  await page.getByRole('textbox', { name: 'Type description here' }).click();
+  await page.getByRole('textbox', { name: 'Type description here' }).fill('testtest');
+  await page.getByRole('textbox', { name: 'Add note' }).click();
+  await page.getByRole('textbox', { name: 'Add note' }).fill('test');
+  await page.getByRole('button', { name: 'Save' }).click();
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+  await page.locator('div:nth-child(29) > .oxd-table-row > div:nth-child(4) > .oxd-table-cell-actions > button:nth-child(2)').click();
+  await page.getByRole('textbox').nth(1).click();
+  await page.getByRole('textbox').nth(1).fill('Test Job test job');
+  await page.getByRole('textbox', { name: 'Type description here' }).click();
+  await page.getByRole('textbox', { name: 'Type description here' }).fill('testtesttesttest');
+  await page.getByRole('textbox', { name: 'Add note' }).click();
+  await page.getByRole('textbox', { name: 'Add note' }).fill('test test note');
+  await page.getByRole('button', { name: 'Save' }).click();
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList');
+  await page.locator('div:nth-child(29) > .oxd-table-row > div:nth-child(4) > .oxd-table-cell-actions > button').first().click();
+  await page.getByRole('button', { name: 'No, Cancel' }).click();
+  await page.getByText('testtesttesttest').click();
+  await page.locator('div:nth-child(29) > .oxd-table-row > div:nth-child(4) > .oxd-table-cell-actions > button').first().click();
+  await page.getByRole('button', { name: ' Yes, Delete' }).click();
+});
